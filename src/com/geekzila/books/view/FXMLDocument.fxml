@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
  
+ <!-- The action will be triggered to FXMLDocumentController where if the user submits the details loginAction method will be triggered -->
  
 <AnchorPane id="AnchorPane" prefHeight="426.0" prefWidth="565.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.geekzila.books.FXMLDocumentController">
    <children>

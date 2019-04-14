@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class MainController implements Initializable {
+public class BooksController implements Initializable {
 
 	@FXML
 	private TextField idField;
@@ -68,7 +68,10 @@ public class MainController implements Initializable {
 
 	Stage dialogStage = new Stage();
 	Scene scene;
-
+	
+	/**
+	 * Insert new record in the database
+	 */
 	@FXML
 	private void insertButton() {
 		String query = "insert into books values(" + idField.getText() + ",'" + titleField.getText() + "','"
@@ -76,7 +79,10 @@ public class MainController implements Initializable {
 		executeQuery(query);
 		showBooks();
 	}
-
+	
+	/**
+	 * Update the record in the database
+	 */
 	@FXML
 	private void updateButton() {
 		String query = "UPDATE books SET title='" + titleField.getText() + "',author='" + authorField.getText()
@@ -86,6 +92,11 @@ public class MainController implements Initializable {
 		showBooks();
 	}
 
+	/**
+	 * Delete a book from the database.
+	 * 
+	 * @throws IOException
+	 */
 	@FXML
 	private void deleteButton() throws IOException {
 		String query = "DELETE FROM books WHERE id=" + idField.getText() + "";
@@ -109,6 +120,11 @@ public class MainController implements Initializable {
 		showBooks();
 	}
 
+	/**
+	 * Get list of books from the database.
+	 * 
+	 * @return
+	 */
 	public ObservableList<Books> getBooksList() {
 		ObservableList<Books> booksList = FXCollections.observableArrayList();
 		Connection connection = connection = ConnectionUtil.connectdb();

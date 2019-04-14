@@ -44,7 +44,12 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
-    
+    /**
+     * 
+     * @param event
+     * 
+     * This will be invoked when user submits the credentials
+     */
     public void loginAction(ActionEvent event){
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
@@ -59,10 +64,14 @@ public class FXMLDocumentController implements Initializable {
             if(!resultSet.next()){
                 infoBox("Please enter correct Email and Password", null, "Failed");
             }else{
+            	// Once user login is succuessful
                 infoBox("Login Successfull",null,"Success" );
                 Node node = (Node)event.getSource();
                 dialogStage = (Stage) node.getScene().getWindow();
                 dialogStage.close();
+                /**
+                 * Navigate to FXMLMenu where CRUD operation takes place.
+                 */
                 scene = new Scene(FXMLLoader.load(getClass().getResource("/com/geekzila/books/view/FXMLMenu.fxml")));
                 dialogStage.setScene(scene);
                 dialogStage.show();
