@@ -8,3 +8,4 @@ After installing javafx on your machine check the javafx command on the buildpat
 Need to add mysql-connector-java-5.1.27.jar in the build path to access the database.
 
 mysql-connector-java-5.1.27.jar download this from maven repository.
+
