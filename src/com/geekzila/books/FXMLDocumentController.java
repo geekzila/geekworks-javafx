@@ -61,7 +61,7 @@ public class FXMLDocumentController implements Initializable {
                 /**
                  * Navigate to FXMLMenu where CRUD operation takes place.
                  */
-                scene = new Scene(FXMLLoader.load(getClass().getResource("/com/geekzila/books/view/FXMLMenu.fxml")));
+                scene = new Scene(FXMLLoader.load(getClass().getResource("/com/geekzila/books/view/HotelMenu.fxml")));
                 dialogStage.setScene(scene);
                 dialogStage.show();
             }

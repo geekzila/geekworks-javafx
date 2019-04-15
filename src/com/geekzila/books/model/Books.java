@@ -1,6 +1,6 @@
 package com.geekzila.books.model;
 
-public class Books {
+public class Books extends BaseEntity {
 
 	private int id;
 	private String title;
@@ -8,16 +8,12 @@ public class Books {
 	private int year;
 	private int pages;
 
-	public Books(int Id, String Title, String Author, int Year, int Pages) {
-		this.id = Id;
+	public Books(int id, String Title, String Author, int Year, int Pages) {
+		this.id = id;
 		this.title = Title;
 		this.author = Author;
 		this.year = Year;
 		this.pages = Pages;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public String getTitle() {

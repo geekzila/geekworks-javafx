@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- All CRUD takes place in this HotelController class. Look into all the methdos that has been triggere from here. -->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.geekzila.books.HotelController">
+   <children>
+      <VBox layoutX="26.0" layoutY="22.0" spacing="15.0">
+         <children>
+            <Label text="ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="RoomCount">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Address">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Price">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="87.0" layoutY="22.0" prefHeight="130.0" prefWidth="129.0" spacing="10.0">
+         <children>
+            <TextField fx:id="idField" />
+            <TextField fx:id="nameField" />
+            <TextField fx:id="numberOfRoomsField" />
+            <TextField fx:id="addressField" />
+            <TextField fx:id="priceField" />
+           
+         </children>
+      </VBox>
+      <HBox layoutX="26.0" layoutY="202.0" spacing="10.0">
+         <children>
+            <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertButton" prefHeight="30.0" prefWidth="60.0" text="Insert" />
+            <Button fx:id="updateButton" mnemonicParsing="false" onAction="#updateButton" prefHeight="30.0" prefWidth="60.0" text="Update" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="60.0" text="Delete" />
+         </children>
+      </HBox>
+      <TableView fx:id="TableView" layoutX="238.0" layoutY="22.0" prefHeight="210.0" prefWidth="400.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="35.0" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="120.0" text="Name" />
+            <TableColumn fx:id="numberOfRoomsColumn" prefWidth="120.0" text="RoomCount" />
+            <TableColumn fx:id="addressColumn" prefWidth="60.0" text="Address" />
+            <TableColumn fx:id="priceColumn" prefWidth="60.0" text="Price" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
