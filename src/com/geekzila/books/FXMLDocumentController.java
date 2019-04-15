@@ -1,11 +1,6 @@
 package com.geekzila.books;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ResourceBundle;
-
-import com.geekzila.books.db.ConnectionUtil;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,12 +30,8 @@ public class FXMLDocumentController implements Initializable {
     Stage dialogStage = new Stage();
     Scene scene;
     
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
- 
     public FXMLDocumentController() {
-        connection = ConnectionUtil.connectdb();
+    	
     }
     
     
@@ -54,14 +45,12 @@ public class FXMLDocumentController implements Initializable {
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
     
-        String sql = "SELECT * FROM user WHERE email = ? and password = ?";
-        
+        boolean loginStatus = false;
+        if(email.equals(password)) {
+        	loginStatus = true;
+        }
         try{
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
-            resultSet = preparedStatement.executeQuery();
-            if(!resultSet.next()){
+            if(!loginStatus){
                 infoBox("Please enter correct Email and Password", null, "Failed");
             }else{
             	// Once user login is succuessful

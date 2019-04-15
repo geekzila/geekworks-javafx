@@ -2,12 +2,8 @@ package com.geekzila.books;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
-import com.geekzila.books.db.ConnectionUtil;
 import com.geekzila.books.model.Books;
 
 import javafx.collections.FXCollections;
@@ -69,14 +65,23 @@ public class BooksController implements Initializable {
 	Stage dialogStage = new Stage();
 	Scene scene;
 	
+	ObservableList<Books> booksList = FXCollections.observableArrayList();
+	
+	public BooksController() {
+		// TODO Auto-generated constructor stub
+		booksList.add(new Books(1, "Famous Book", "Dharshnu", 1998, 122));
+		booksList.add(new Books(2, "Another Book", "Vela", 1998, 1256));
+	}
 	/**
 	 * Insert new record in the database
 	 */
 	@FXML
 	private void insertButton() {
-		String query = "insert into books values(" + idField.getText() + ",'" + titleField.getText() + "','"
-				+ authorField.getText() + "'," + yearField.getText() + "," + pagesField.getText() + ")";
-		executeQuery(query);
+//		String query = "insert into books values(" + idField.getText() + ",'" + titleField.getText() + "','"
+//				+ authorField.getText() + "'," + yearField.getText() + "," + pagesField.getText() + ")";
+//		executeQuery(query);
+		Books newBook = new Books(Integer.valueOf(idField.getText()), titleField.getText(), authorField.getText(), Integer.valueOf(yearField.getText()), Integer.valueOf(pagesField.getText()));
+		booksList.add(newBook);
 		showBooks();
 	}
 	
@@ -88,7 +93,6 @@ public class BooksController implements Initializable {
 		String query = "UPDATE books SET title='" + titleField.getText() + "',author='" + authorField.getText()
 				+ "',year=" + yearField.getText() + ",pages=" + pagesField.getText() + " WHERE id=" + idField.getText()
 				+ "";
-		executeQuery(query);
 		showBooks();
 	}
 
@@ -99,20 +103,17 @@ public class BooksController implements Initializable {
 	 */
 	@FXML
 	private void deleteButton() throws IOException {
-		String query = "DELETE FROM books WHERE id=" + idField.getText() + "";
-		executeQuery(query);
+		booksList.remove(getBook(Integer.valueOf(idField.getText())));
 		showBooks();
 	}
-
-	public void executeQuery(String query) {
-		Connection conn = ConnectionUtil.connectdb();
-		Statement st;
-		try {
-			st = conn.createStatement();
-			st.executeUpdate(query);
-		} catch (Exception e) {
-			e.printStackTrace();
+	
+	private Books getBook(Integer id) {
+		for (Books books : booksList) {
+			if(books.getId() == id) {
+				return books;
+			}
 		}
+		return null;
 	}
 
 	@Override
@@ -126,24 +127,6 @@ public class BooksController implements Initializable {
 	 * @return
 	 */
 	public ObservableList<Books> getBooksList() {
-		ObservableList<Books> booksList = FXCollections.observableArrayList();
-		Connection connection = connection = ConnectionUtil.connectdb();
-		String query = "SELECT * FROM books";
-		Statement st;
-		ResultSet rs;
-
-		try {
-			st = connection.createStatement();
-			rs = st.executeQuery(query);
-			Books books;
-			while (rs.next()) {
-				books = new Books(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getInt("year"),
-						rs.getInt("pages"));
-				booksList.add(books);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return booksList;
 	}
 
